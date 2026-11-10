@@ -10,8 +10,12 @@ class Login():
         self.ventana = CTk()
         w = (int(self.ventana.winfo_screenwidth()))
         h = (int(self.ventana.winfo_screenheight()))
-        self.w = int(w*0.67)
-        self.h = int(h*0.67)
+        if h < 1080:
+            self.w = int(w*0.8)
+            self.h = int(h*0.8)
+        else:
+            self.w = int(w*0.67)
+            self.h = int(h*0.67)
         # Apariencia
         apariencia = self.ventana._get_appearance_mode()
         globales.setSize(w,h,apariencia)
@@ -65,7 +69,7 @@ class Login():
         self.contra_validate.pack(side=TOP, anchor="w", padx=72)
         # Boton formulario
         inicio = CTkButton(form, width=self.w*0.147, height=45, fg_color="#93A3DC", text_color="white", text="Iniciar Sesion", font=self.titulos, command=self.verificacion)
-        inicio.pack(side=TOP, pady=(self.h*0.03, self.h*0.02))
+        inicio.pack(side=TOP)
 
     def verificacion(self):
         correo = self.correo.get()
