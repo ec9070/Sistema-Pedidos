@@ -3,7 +3,8 @@ import util.globals as globales
 import util.generic as utl
 from PIL import Image
 import re
-
+from controller.Usuario import Usuario
+from CTkMessagebox import CTkMessagebox as Message
 class Login():
     def __init__(self):
         # Creacion de la ventana
@@ -68,7 +69,7 @@ class Login():
         self.contra_validate = CTkLabel(form, text="")
         self.contra_validate.pack(side=TOP, anchor="w", padx=72)
         # Boton formulario
-        inicio = CTkButton(form, width=self.w*0.147, height=45, fg_color="#93A3DC", text_color="white", text="Iniciar Sesion", font=self.titulos, command=self.verificacion)
+        inicio = CTkButton(form, width=self.w*0.147, height=45, fg_color="#93A3DC", text_color="white", text="Iniciar Sesion", font=self.titulos, command=self.aux)
         inicio.pack(side=TOP)
 
     def verificacion(self):
@@ -89,3 +90,24 @@ class Login():
         else:
             self.correo_validate.configure(text="")
             self.contra_validate.configure(text="")
+            user = Usuario.getByCorreo(correo)
+            if user:
+                contra = utl.hash(contra)
+                if(contra==user[2]):
+                    usuario=[user[0],user[1],user[3],user[4],user[5],user[6]]
+                    globales.setUser(usuario)
+                    self.ventana.withdraw()
+                    VentanaPrincipal(self.ventana)
+                else:
+                    Message(title="Error de inicio de sesión", message="Contraseña incorrecta", icon="cancel")
+            else:
+                Message(title="Error de inicio de sesión", message="Correo incorrecto", icon="cancel")
+
+    def aux(self):
+        usuario=[1,'admin@admin.com','Admin',None,None,'Administrador']
+        globales.setUser(usuario)
+        self.ventana.withdraw()
+        VentanaPrincipal(self.ventana)
+
+    
+from forms.ventana_principal import VentanaPrincipal

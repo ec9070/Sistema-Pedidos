@@ -8,6 +8,8 @@ customtkinter = "*"
 ctkmessagebox = "*"
 ctktable = "*"
 pillow = "*"
+mysql-connector-python = "*"
+python-dotenv = "*"
 
 [dev-packages]
 
