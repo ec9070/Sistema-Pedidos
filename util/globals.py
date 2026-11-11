@@ -5,3 +5,15 @@ def setSize(ancho, altura, tema):
     w = ancho
     h = altura
     apariencia = tema
+
+def setUser(user):
+    global usuario
+    usuario = user
+
+def getSize():
+    size=(w,h,apariencia)
+    return size
+
+def getUser():
+    return usuario
+
