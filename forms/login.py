@@ -104,10 +104,9 @@ class Login():
                 Message(title="Error de inicio de sesión", message="Correo incorrecto", icon="cancel")
 
     def aux(self):
-        usuario=[1,'admin@admin.com','Admin',None,None,'Administrador']
+        usuario=[1,'ec9070@gmail.com','Admin',None,None,'Administrador']
         globales.setUser(usuario)
         self.ventana.withdraw()
         VentanaPrincipal(self.ventana)
-
-    
+        
 from forms.ventana_principal import VentanaPrincipal
